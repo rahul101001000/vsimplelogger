@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vsimplelogger</title>
+</head>
+<body>
+    <h1>vsimplelogger</h1>
+    <button onclick="logAction()">Log Action</button>
+
+    <script>
+        function logAction() {
+            fetch('http://localhost:3000/log', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user: 'john_doe',
+                    action: 'button_click',
+                    timestamp: new Date().toISOString()
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data));
+        }
+    </script>
+</body>
+</html>
